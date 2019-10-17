@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import API from "../API";
+import socketIOClient from "socket.io-client";
 
 class Search extends Component {
   state = {
     result: [],
-    searchInput: ""
+    searchInput: "",
+    endpoint: "localhost:3001",
+    title: ""
   };
 
   searchBook = (input) => {
@@ -57,6 +60,21 @@ class Search extends Component {
                 .then(res => {
                   console.log("let's save");
                   buttonValue.innerHTML = "Saved";
+
+                  this.setState({
+                    title: bookData.volumeInfo.title
+                  });
+
+                  const socket = socketIOClient(this.state.endpoint);
+                  socket.emit('message', this.state.title);
+                  socket.on('message', (msg) => {
+                    document.querySelector(".socket-msg p").innerHTML = msg;
+                    document.querySelector(".socket-msg").classList.remove("hide");
+                    setTimeout(() => {
+                      document.querySelector(".socket-msg").classList.add("hide");
+                    }, 2000);
+                  });
+
                 });
 
             } else {
