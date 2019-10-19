@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import API from "../API";
 import socketIOClient from "socket.io-client";
 
-const PORT = process.env.PORT || 3001;
+const endpoint = "";
+
+// for testing with local machine
+// const endpoint = `localhost:${process.env.PORT || 3001}`;
 
 class Search extends Component {
 
   state = {
     result: [],
     searchInput: "",
-    endpoint: `localhost:${PORT}`,
+    endpoint: endpoint,
     title: ""
   };
 
@@ -69,7 +72,6 @@ class Search extends Component {
                   });
 
                   const socket = socketIOClient(this.state.endpoint);
-                  // const socket = socketIOClient();
                   socket.emit('message', this.state.title);
                   socket.on('message', (msg) => {
                     document.querySelector(".socket-msg p").innerHTML = msg;
