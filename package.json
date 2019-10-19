@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "react-book-search",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "react-book-search",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.7.4",

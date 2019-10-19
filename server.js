@@ -14,9 +14,9 @@ const io = socketIO(server);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 
 // Routes
@@ -27,7 +27,8 @@ app.use(routes);
 mongoose.connection.dropDatabase();
 // Connect to Mongo DB 
 // If deployed, use the deployed database. Otherwise use the local database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
+const MONGODB_URI = process.env.MONGODB_URI || `mongodb://${process.env.USER}:${process.env.PASSWORD}@ds337418.mlab.com:37418/heroku_9chzb1rd`;
+// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 

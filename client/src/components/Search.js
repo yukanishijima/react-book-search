@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import API from "../API";
 import socketIOClient from "socket.io-client";
 
+const PORT = process.env.PORT || 3001;
+
 class Search extends Component {
+
   state = {
     result: [],
     searchInput: "",
-    endpoint: "localhost:3001",
+    endpoint: `localhost:${PORT}`,
     title: ""
   };
 
@@ -66,6 +69,7 @@ class Search extends Component {
                   });
 
                   const socket = socketIOClient(this.state.endpoint);
+                  // const socket = socketIOClient();
                   socket.emit('message', this.state.title);
                   socket.on('message', (msg) => {
                     document.querySelector(".socket-msg p").innerHTML = msg;
@@ -105,7 +109,7 @@ class Search extends Component {
             <p>{book.volumeInfo.authors}</p>
             <p>{book.volumeInfo.publishedDate}</p>
             <p>{book.volumeInfo.description}</p>
-            <button onClick={this.handleSaveSubmit} name={book.id}>Save</button>
+            <button id="save" onClick={this.handleSaveSubmit} name={book.id}>Save</button>
           </div>
         )}
       </div >
