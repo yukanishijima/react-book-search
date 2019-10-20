@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import API from "../API";
 import socketIOClient from "socket.io-client";
 
-const endpoint = "";
+// const endpoint = "";
 
 // for testing with local machine
-// const endpoint = `localhost:${process.env.PORT || 3001}`;
+const endpoint = `localhost:${process.env.PORT || 3001}`;
 
 class Search extends Component {
 
@@ -36,7 +36,9 @@ class Search extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    this.searchBook(this.state.searchInput);
+    if (document.querySelector("#search-input").value !== "") {
+      this.searchBook(this.state.searchInput);
+    }
   };
 
 
@@ -97,13 +99,21 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Message</h1>
-        <div>
-          <label></label>
-          <input onChange={this.handleInputChange} type="search" id="book-search" placeholder="Search any book..." />
-          <button onClick={this.handleFormSubmit}>Search</button>
+      <main>
+
+        <div className="title-container">
+          <div className="title">
+            <h1 id="message">You know you've read a good book when you turn the last page and feel a little as if you have lost a friend.</h1>
+            <h2>- Paul Sweeney</h2>
+            <div id="search-box">
+              <label></label>
+              <input onChange={this.handleInputChange} type="text" id="search-input" placeholder="Search any book..." />
+              <button onClick={this.handleFormSubmit} id="search-button"><i className="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
         </div>
+
         {this.state.result.map(book =>
           <div key={book.id}>
             <img src={book.volumeInfo.imageLinks.thumbnail} alt="book" />
@@ -114,7 +124,8 @@ class Search extends Component {
             <button id="save" onClick={this.handleSaveSubmit} name={book.id}>Save</button>
           </div>
         )}
-      </div >
+
+      </main>
     )
   };
 };

@@ -5,11 +5,14 @@ function Header() {
   return (
     <header>
       <ul>
-        <li><Link to="/">Google Book Search</Link></li>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/saved">Saved Books</Link></li>
-        <li className="socket-msg hide">A new book is saved!<p></p></li>
+        {/* <li><Link to="/">Book Search</Link></li> */}
+        <li><Link to="/" className={window.location.pathname === "/" ? "active" : ""}>Home</Link></li>
+        <li><Link to="/saved" className={window.location.pathname === "/saved" ? "active" : ""}>Saved Books</Link></li>
       </ul>
+      <div className="socket-msg hide">
+        <h4>A new book is saved!</h4>
+        <p></p>
+      </div>
     </header>
   )
 };

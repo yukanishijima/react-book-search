@@ -1,6 +1,107 @@
+@import url(https://fonts.googleapis.com/css?family=Abhaya+Libre:700,800|Montserrat:200,300&display=swap);
+
+/* global */
+body {
+  background: #f9f7ec;
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* header */
+.socket-msg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: pink;
+}
 .hide {
   display: none;
+}
+
+header {
+  height: 36px;
+}
+ul {
+  list-style: none;
+  padding: 10px 0;  
+  position: fixed;
+  top: 0;
+}
+li {
+  display: inline-block;
+  text-align: left;
+  margin: 0 10px;
+}
+li a {
+  text-decoration: none;
+  color: black;
+}
+.active {
+  border-bottom: 1px solid black;
+}
+.title-container {
+  position: relative;
+  height: 90vh;
+}
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  min-width: 250px;
+  width: 85vw;
+}
+#message {
+  text-align: left;
+  font-size: 37px;
+  line-height: 1.3em;
+  font-family: 'Abhaya Libre', serif;
+  transform: scale(1, 1.1);
+  font-weight: 800;
+}
+h2 {
+  text-align: right;
+  font-size: 16px;
+  line-height: 1.5em;
+  margin: 0px auto 30px;
+  font-weight: 200;
+}
+#search-box {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+}
+#search-input {
+  width: 100%;
+  height: 38px;
+  border: none;
+  padding: 0 10px;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  color: black;
+  background: #f7ebbf;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+#book-search:focus::placeholder {
+  color: transparent;
+}
+#book-search:focus{
+  color: black;
+}
+#search-button {
+  width: 40px;
+  height: 38px;
+  border: none;
+  padding: 0 10px;
+  background: #f1da87;
+  text-align: center;
+  color:  #757474;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  font-size: 17px;
 }
 
 /* search page */
