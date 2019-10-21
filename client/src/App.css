@@ -105,5 +105,55 @@ h2 {
 }
 
 /* search page */
+h2.book-header {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-left: 50px;
+  width: 90vw;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 10px;
+}
+.book-holder {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+.book {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, .8);
+  border-radius: 20px;
+  border: 1px solid rgb(224, 224, 224);
+  margin: 10px;
+  width: 45vw;
+  box-shadow: 10px 10px 5px #c5c5c5;
+}
 
+.book img + p {
+  margin-bottom: 10px;
+}
+
+.book button {
+  background-image: linear-gradient(to bottom, #20406b, #153258);
+  border: none;
+  width: 150px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.author {
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: right;
+  font-weight: 600;
+}
+
+.publisher-date {
+  color: #444444;
+  font-size: 0.9rem;
+  text-align: right;
+  padding: 10px;
+}
 /* saved book page */

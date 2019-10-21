@@ -114,16 +114,19 @@ class Search extends Component {
           </div>
         </div>
 
-        {this.state.result.map(book =>
-          <div key={book.id}>
-            <img src={book.volumeInfo.imageLinks.thumbnail} alt="book" />
-            <p><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></p>
-            <p>{book.volumeInfo.authors}</p>
-            <p>{book.volumeInfo.publishedDate}</p>
-            <p>{book.volumeInfo.description}</p>
-            <button id="save" onClick={this.handleSaveSubmit} name={book.id}>Save</button>
-          </div>
-        )}
+        {this.state.result.length > 0 && <h2 className="book-header">Books</h2>}
+        <section className="book-holder">
+          {this.state.result.map(book =>
+            <div key={book.id} className="book">
+              <img src={book.volumeInfo.imageLinks.thumbnail} alt="book" />
+              <p><a href={book.volumeInfo.previewLink}>{book.volumeInfo.title}</a></p>
+              <p className="author">{book.volumeInfo.authors}</p>
+              <p className="publisher-date">{book.volumeInfo.publishedDate}</p>
+              <p>{book.volumeInfo.description}</p>
+              <button id="save" onClick={this.handleSaveSubmit} name={book.id}>Save</button>
+            </div>
+          )}
+        </section>
 
       </main>
     )
