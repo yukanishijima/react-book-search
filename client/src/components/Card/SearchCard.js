@@ -99,9 +99,10 @@ function SearchCard(props) {
                   buttonValue.innerHTML = "Saved";
 
                   const title = bookData.volumeInfo.title
-                  const endpoint = `localhost:${process.env.PORT || 3001}`;
+                  // const endpoint = `localhost:${process.env.PORT || 3001}`;
 
-                  const socket = socketIOClient(endpoint);
+                  // const socket = socketIOClient(endpoint);
+                  const socket = socketIOClient();
                   socket.emit('message', title);
                   socket.on('message', (msg) => {
                     console.log("socket is working!");
