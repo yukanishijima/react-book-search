@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from "../API";
+import SavedCard from "./Card/SavedCard";
 
 class Saved extends Component {
   state = {
@@ -14,6 +15,8 @@ class Saved extends Component {
     API.getSavedBooks()
       .then(res => {
         console.log(res.data);
+        res.data.map(book => console.log(book));
+
         this.setState({
           savedBooks: res.data
         })
@@ -21,33 +24,36 @@ class Saved extends Component {
       .catch(err => console.log(err));
   };
 
-  handleDelete = e => {
-    e.preventDefault();
-    const id = e.target.name;
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+
 
   render() {
-    return (
-      <div>
-        <h1>Saved Books</h1>
 
-        {this.state.savedBooks.map(book =>
-          <div key={book.bookId}>
-            <img src={book.image} alt="book" />
-            <p><a href={book.link}>{book.title}</a></p>
-            <p>{book.authors}</p>
-            <p>{book.published}</p>
-            <p>{book.description}</p>
-            <button onClick={this.handleDelete} name={book.bookId}>Delete</button>
-          </div>
-        )}
+    console.log(this.state.savedBooks);
 
-      </div>
-    )
-  };
-};
+    if (this.state.savedBooks.length === 0) {
+      return (
+        <main>
+          <p className="not-saved">No books have been saved...</p>
+        </main>
+      );
+    } else {
+      return (
+        <main>
+          {this.state.savedBooks.map(book =>
+            <SavedCard
+              id={book.bookId}
+              image={book.image}
+              href={book.link}
+              title={book.title}
+              authors={book.authors}
+              description={book.description}
+              loadBooks={this.loadBooks}
+            />
+          )}
+        </main>
+      )
+    };
+  }
+}
 
 export default Saved;

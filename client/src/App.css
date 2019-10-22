@@ -1,33 +1,57 @@
-@import url(https://fonts.googleapis.com/css?family=Abhaya+Libre:700,800|Montserrat:200,300&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Abhaya+Libre:800|Abril+Fatface|Montserrat:200,300|Old+Standard+TT:700&display=swap);
 
 /* global */
 body {
   background: #f9f7ec;
   font-family: 'Montserrat', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* header */
 .socket-msg {
   position: fixed;
-  top: 0;
-  right: 0;
-  background: pink;
+  top: 2vw;
+  right: 2vw;
+  background: #f7ebbf;
+  z-index: 1;
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 278px;
+  font-size: 15px;
+  line-height: 1.4em;
+  color: rgba(43, 42, 42, 0.9);
+}
+.socket-msg h4 {
+  margin-bottom: 5px;
+  font-weight: 300;
+}
+.socket-msg p {
+  font-style: italic;
+  font-weight: 600;
+  font-family: 'Abhaya Libre', sans-serif;
+  font-size: 18px;
 }
 .hide {
   display: none;
 }
 
-header {
-  height: 36px;
-}
 ul {
   list-style: none;
   padding: 10px 0;  
   position: fixed;
   top: 0;
+  left: 10px;
+  z-index: 1;
+  background: #f9f7ec;
+  opacity: 1;
+  width: 100%;
+  /* to set vertical-align: middle for li */
+  display: flex;
+  align-items: center;
+  height: 36px;
 }
 li {
-  display: inline-block;
   text-align: left;
   margin: 0 10px;
 }
@@ -38,9 +62,15 @@ li a {
 .active {
   border-bottom: 1px solid black;
 }
+
+
+/* main */
+main {
+  text-align: center;
+}
 .title-container {
   position: relative;
-  height: 90vh;
+  height: 100vh;
 }
 .title {
   position: absolute;
@@ -53,22 +83,24 @@ li a {
 }
 #message {
   text-align: left;
-  font-size: 37px;
-  line-height: 1.3em;
-  font-family: 'Abhaya Libre', serif;
-  transform: scale(1, 1.1);
+  font-size: 36px;
+  line-height: 1.2em;
+  font-family: 'Abril Fatface', cursive;
+  /* font-family: 'Abhaya Libre', serif; */
+  /* transform: scale(1, 1.1); */
+  letter-spacing: -0.01em;
   font-weight: 800;
+  color: rgba(43, 42, 42, 0.9);
 }
 h2 {
   text-align: right;
   font-size: 16px;
   line-height: 1.5em;
-  margin: 0px auto 30px;
+  margin-bottom: 30px;
   font-weight: 200;
 }
 #search-box {
-  width: 100%;
-  max-width: 300px;
+  max-width: 370px;
   position: relative;
   display: flex;
   margin: 0 auto;
@@ -104,6 +136,56 @@ h2 {
   font-size: 17px;
 }
 
-/* search page */
+
+@media screen and (min-width: 350px) {
+  #message {
+    font-size: 2.7em;
+    line-height: 1.2em;
+  }
+}
+@media screen and (min-width: 500px) {
+  #message {
+    font-size: 3em;
+    line-height: 1.3em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+}
+@media screen and (min-width: 650px) {
+  #message {
+    font-size: 3.4em;
+    line-height: 1.4em;
+  }
+}
+@media screen and (min-width: 910px) {
+  #message {
+    font-size: 3.8em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 1015px) {
+  #message {
+    font-size: 4em;
+  }
+  .title {
+    width: 80vw;
+    max-width: 990px;
+  }
+}
+@media screen and (min-width: 1178px) {
+  h2 {
+    margin-top: -40px;
+  }
+}
+
 
 /* saved book page */
+.not-saved {
+  font-family: 'Abhaya Libre', serif;
+  font-size: 25px;
+  text-align: center;
+  margin: 70px 0;
+}
