@@ -19,10 +19,6 @@ class Header extends Component {
           <li><Link to="/" name="/" onClick={this.handleClick} className={this.state.path === "/" ? "active" : ""}>Home</Link></li>
           <li><Link to="/saved" name="/saved" onClick={this.handleClick} className={this.state.path === "/saved" ? "active" : ""}>Saved Books</Link></li>
         </ul>
-        <div className="socket-msg hide">
-          <h4>A new book has been saved:</h4>
-          <p></p>
-        </div>
       </header>
     )
   }

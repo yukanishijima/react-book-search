@@ -34,11 +34,11 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // socket
 io.on('connection', socket => {
-  console.log('User connected')
+  console.log('user connected')
 
   // once we get the event from one of the clients, send it to the rest of the clients
   socket.on('message', (msg) => {
-    io.sockets.emit('message', msg)
+    io.emit('message', msg)
     console.log(`msg sent!`);
   })
 
@@ -48,7 +48,6 @@ io.on('connection', socket => {
 })
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
 
 // app.listen(PORT, () => {
 //   console.log(`🌎 ==> API server now on port ${PORT}!`);

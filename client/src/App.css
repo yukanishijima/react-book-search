@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Abhaya+Libre:800|Abril+Fatface|Montserrat:200,300|Old+Standard+TT:700&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Abhaya+Libre:800|Abril+Fatface|Montserrat:200,300&display=swap);
 
 /* global */
 body {
@@ -73,7 +73,8 @@ main {
 }
 .title-container {
   position: relative;
-  height: 90vh;
+  height: 100vh;
+  margin-top: -56px;
 }
 .title {
   position: absolute;

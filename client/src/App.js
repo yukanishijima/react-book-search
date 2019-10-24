@@ -15,6 +15,10 @@ function App() {
           <Route exact path="/saved" component={Saved} />
         </Switch>
       </div>
+      <div className="socket-msg hide">
+        <h4>A new book has been saved:</h4>
+        <p></p>
+      </div>
     </Router>
   );
 }

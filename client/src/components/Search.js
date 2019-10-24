@@ -2,12 +2,78 @@ import React, { Component } from 'react';
 import API from "../API";
 import SearchCard from "./Card/SearchCard";
 
-class Search extends Component {
+import socketIOClient from "socket.io-client";
 
+let socket;
+
+class Search extends Component {
   state = {
     result: [],
     searchInput: "",
+    savedTitle: "",
   };
+
+  componentDidMount() {
+    this.initSocket();
+  };
+
+  initSocket = () => {
+    // const endpoint = `localhost:${process.env.PORT || 3001}`;
+    // const socket = socketIOClient(endpoint);
+    socket = socketIOClient();
+    socket.on('message', (msg) => {
+      document.querySelector(".socket-msg p").innerHTML = msg;
+      document.querySelector(".socket-msg").classList.remove("hide");
+      setTimeout(() => {
+        document.querySelector(".socket-msg").classList.add("hide");
+      }, 3500);
+    });
+  }
+
+  handleSaveSubmit = (e) => {
+    e.preventDefault();
+    const id = e.target.name;
+    let buttonValue = e.target;
+
+    API.searchOneBook(id)
+      .then(res => {
+        const bookData = res.data;
+
+        API.findSavedBook(res.data.id)
+          .then(savedBook => {
+            if (savedBook.data.length === 0) {
+
+              API.saveBook({
+                bookId: bookData.id,
+                title: bookData.volumeInfo.title,
+                authors: bookData.volumeInfo.authors,
+                published: bookData.volumeInfo.publishedDate,
+                description: bookData.volumeInfo.description,
+                image: bookData.volumeInfo.imageLinks.thumbnail,
+                link: bookData.volumeInfo.previewLink
+              })
+                .then(res => {
+                  console.log("let's save");
+                  buttonValue.innerHTML = "Saved";
+
+                  this.setState({
+                    savedTitle: bookData.volumeInfo.title
+                  })
+
+                  socket.emit('message', this.state.savedTitle);
+                });
+
+            } else {
+              console.log("already saved");
+              buttonValue.innerHTML = "Already saved";
+            }
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
+  };
+
+
 
   searchBook = (input) => {
     API.searchBooks(input)
@@ -53,7 +119,7 @@ class Search extends Component {
         </div>
 
         {this.state.result.map(book =>
-          <>
+          <div>
             <SearchCard
               id={book.id}
               image={book.volumeInfo.imageLinks.thumbnail}
@@ -62,8 +128,9 @@ class Search extends Component {
               authors={book.volumeInfo.authors}
               published={book.volumeInfo.publishedDate}
               description={book.volumeInfo.description}
+              handleSaveSubmit={this.handleSaveSubmit}
             />
-          </>
+          </div>
         )}
       </main>
     )

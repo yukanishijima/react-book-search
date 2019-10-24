@@ -8,9 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
-import API from "../../API";
-import socketIOClient from "socket.io-client";
-
 const useStyles = makeStyles({
   card: {
     width: "90vw",
@@ -72,62 +69,6 @@ function SearchCard(props) {
 
   const classes = useStyles();
 
-  const handleSaveSubmit = (e) => {
-    e.preventDefault();
-    const id = e.target.name;
-    let buttonValue = e.target;
-
-    API.searchOneBook(id)
-      .then(res => {
-        const bookData = res.data;
-
-        API.findSavedBook(res.data.id)
-          .then(savedBook => {
-            if (savedBook.data.length === 0) {
-
-              API.saveBook({
-                bookId: bookData.id,
-                title: bookData.volumeInfo.title,
-                authors: bookData.volumeInfo.authors,
-                published: bookData.volumeInfo.publishedDate,
-                description: bookData.volumeInfo.description,
-                image: bookData.volumeInfo.imageLinks.thumbnail,
-                link: bookData.volumeInfo.previewLink
-              })
-                .then(res => {
-                  console.log("let's save");
-                  buttonValue.innerHTML = "Saved";
-
-                  const title = bookData.volumeInfo.title
-                  // const endpoint = `localhost:${process.env.PORT || 3001}`;
-
-                  // const socket = socketIOClient(endpoint);
-                  const socket = socketIOClient();
-                  socket.emit('message', title);
-                  socket.on('message', (msg) => {
-                    console.log("socket is working!");
-                    console.log(msg);
-                    document.querySelector(".socket-msg p").innerHTML = msg;
-                    document.querySelector(".socket-msg").classList.remove("hide");
-                    setTimeout(() => {
-                      document.querySelector(".socket-msg").classList.add("hide");
-                    }, 3500);
-                  });
-
-                });
-
-            } else {
-              console.log("already saved");
-              buttonValue.innerHTML = "Already saved";
-            }
-
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  };
-
-
   return (
     <Card className={classes.card}>
       <div key={props.id}>
@@ -160,7 +101,7 @@ function SearchCard(props) {
         </CardContent>
 
         <CardActions>
-          <button id="save" onClick={handleSaveSubmit} name={props.id} className={classes.button}>
+          <button id="save" onClick={props.handleSaveSubmit} name={props.id} className={classes.button}>
             Save
           </button>
         </CardActions>
