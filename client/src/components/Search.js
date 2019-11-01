@@ -119,7 +119,7 @@ class Search extends Component {
         </div>
 
         {this.state.result.map(book =>
-          <div>
+          <div key={book.id}>
             <SearchCard
               id={book.id}
               image={book.volumeInfo.imageLinks.thumbnail}

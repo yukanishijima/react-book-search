@@ -40,15 +40,17 @@ class Saved extends Component {
       return (
         <main>
           {this.state.savedBooks.map(book =>
-            <SavedCard
-              id={book.bookId}
-              image={book.image}
-              href={book.link}
-              title={book.title}
-              authors={book.authors}
-              description={book.description}
-              loadBooks={this.loadBooks}
-            />
+            <div key={book.bookId}>
+              <SavedCard
+                id={book.bookId}
+                image={book.image}
+                href={book.link}
+                title={book.title}
+                authors={book.authors}
+                description={book.description}
+                loadBooks={this.loadBooks}
+              />
+            </div>
           )}
         </main>
       )
