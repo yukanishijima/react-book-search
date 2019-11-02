@@ -119,18 +119,17 @@ class Search extends Component {
         </div>
 
         {this.state.result.map(book =>
-          <div key={book.id}>
-            <SearchCard
-              id={book.id}
-              image={book.volumeInfo.imageLinks.thumbnail}
-              href={book.volumeInfo.previewLink}
-              title={book.volumeInfo.title}
-              authors={book.volumeInfo.authors}
-              published={book.volumeInfo.publishedDate}
-              description={book.volumeInfo.description}
-              handleSaveSubmit={this.handleSaveSubmit}
-            />
-          </div>
+          <SearchCard
+            key={book.id}
+            id={book.id}
+            image={book.volumeInfo.imageLinks.thumbnail}
+            href={book.volumeInfo.previewLink}
+            title={book.volumeInfo.title}
+            authors={book.volumeInfo.authors}
+            published={book.volumeInfo.publishedDate}
+            description={book.volumeInfo.description}
+            handleSaveSubmit={this.handleSaveSubmit}
+          />
         )}
       </main>
     )

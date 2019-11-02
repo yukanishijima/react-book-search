@@ -81,41 +81,39 @@ function SavedCard(props) {
 
   return (
     <Card className={classes.card}>
-      <div key={props.id}>
-        <CardActionArea className={classes.cardActionArea}>
-          <a href={props.href} className={classes.aStyle}>
-            <CardContent>
-              <div className={classes.cardTitle}>
-                <Typography variant="h6" component="h5" className={classes.cardFonts}>
-                  {props.title}
-                </Typography>
-                <Typography variant="body2" component="p" className={classes.subStyle}>
-                  {props.authors}
-                  <br></br>
-                  {props.published}
-                </Typography>
-              </div>
-              <CardMedia
-                className={classes.media}
-                image={props.image}
-                title="Book"
-              />
-            </CardContent>
-          </a>
-        </CardActionArea>
+      <CardActionArea className={classes.cardActionArea}>
+        <a href={props.href} className={classes.aStyle}>
+          <CardContent>
+            <div className={classes.cardTitle}>
+              <Typography variant="h6" component="h5" className={classes.cardFonts}>
+                {props.title}
+              </Typography>
+              <Typography variant="body2" component="p" className={classes.subStyle}>
+                {props.authors}
+                <br></br>
+                {props.published}
+              </Typography>
+            </div>
+            <CardMedia
+              className={classes.media}
+              image={props.image}
+              title="Book"
+            />
+          </CardContent>
+        </a>
+      </CardActionArea>
 
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p" className={classes.pStyle}>
-            {props.description}
-          </Typography>
-        </CardContent>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p" className={classes.pStyle}>
+          {props.description}
+        </Typography>
+      </CardContent>
 
-        <CardActions>
-          <button id="save" onClick={handleDelete} name={props.id} className={classes.button}>
-            Delete
+      <CardActions>
+        <button id="save" onClick={handleDelete} name={props.id} className={classes.button}>
+          Delete
           </button>
-        </CardActions>
-      </div>
+      </CardActions>
     </Card>
   )
 }

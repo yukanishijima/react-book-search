@@ -1,29 +1,38 @@
-# Create React Express App
+# React Book Search App 📚
 
-## About This Boilerplate
+Search, browse, save and reveiw a book of your interest!
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+[Live](https://for-book-lovers.herokuapp.com)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+<!-- ## Demo
 
-## Starting the app locally
+![gif](https://github.com/yukanishijima/react-book-search/blob/master/app/public/demo.gif)  -->
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## Functionality
 
-```
-npm install
-```
+- Once a user fills in the search box and submit it, the app will connect Google Books API and render the search result.
 
-This should install node modules within the server and the client folder.
+- A user can save a book by clicking the save button. At the back-end, the app will save it to the MongoDB database using mongoose schema. 
 
-After both installations complete, run the following command in your terminal:
+- The saved page will get all saved books from the database and render them on the page. The delete button allows a user to delete a book from the database.   
 
-```
-npm start
-```
+- The app utilizes React lifecycle method to query and display book data on the page. 
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+- This is a SPA (Single Page Application) where react-router-dom navigates React components without changing the routes in Express.
 
-## Deployment (Heroku)
+## Express Routes
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+``/api/books (post)`` - create data set of a new book (documents) and save in the books collection inside the database.  
+``/api/books (get)`` - returns all saved books as JSON from the database.  
+``/api/books/:id (get)`` - return a book from the database by id.  
+``/api/books/:id (delete)`` - deletes a book from the database by id.  
+``* (get)`` - loads the single HTML page in client/build/index.html.  
+
+## Technologies & Resources
+
+- Node, Express, MongoDB, and Mongoose for back-end
+- React for front-end
+- MVC design pattern
+- Material-UI
+- socket.io
+
