@@ -111,7 +111,7 @@ class Search extends Component {
             <h2>- Paul Sweeney</h2>
             <div id="search-box">
               <label></label>
-              <input onChange={this.handleInputChange} type="text" id="search-input" placeholder="Search any book..." />
+              <input onChange={this.handleInputChange} type="text" id="search-input" placeholder="Search any book..." autoComplete="off" />
               <button onClick={this.handleFormSubmit} id="search-button"><i className="fa fa-search"></i>
               </button>
             </div>
@@ -122,7 +122,7 @@ class Search extends Component {
           <SearchCard
             key={book.id}
             id={book.id}
-            image={book.volumeInfo.imageLinks.thumbnail}
+            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
             href={book.volumeInfo.previewLink}
             title={book.volumeInfo.title}
             authors={book.volumeInfo.authors}
