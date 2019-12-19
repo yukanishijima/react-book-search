@@ -4,9 +4,9 @@ Search, browse, save and reveiw a book of your interest!
 
 [Live](https://for-book-lovers.herokuapp.com)
 
-<!-- ## Demo
+## Demo
 
-![gif](https://github.com/yukanishijima/react-book-search/blob/master/app/public/demo.gif)  -->
+![gif](client/public/demo.gif) 
 
 ## Functionality
 
