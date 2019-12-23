@@ -6,7 +6,7 @@ Search, browse, save and reveiw a book of your interest!
 
 ## Demo
 
-![gif](client/public/demo.gif) 
+![gif](client/public/newDemo.gif) 
 
 ## Functionality
 
