@@ -62,6 +62,7 @@ const useStyles = makeStyles({
     color: "rgba(43, 42, 42, 0.9)",
     '&:hover': {
       background: "#f1d87e",
+      cursor: "pointer",
     }
   },
 });

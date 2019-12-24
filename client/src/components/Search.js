@@ -74,7 +74,6 @@ class Search extends Component {
   };
 
 
-
   searchBook = (input) => {
     API.searchBooks(input)
       .then(res => {
@@ -93,8 +92,13 @@ class Search extends Component {
     });
   };
 
+  handleEnterPress = e => {
+    if (e.key === "Enter") {
+      this.handleFormSubmit();
+    }
+  }
+
   handleFormSubmit = e => {
-    e.preventDefault();
     if (document.querySelector("#search-input").value !== "") {
       this.searchBook(this.state.searchInput);
     }
@@ -111,7 +115,7 @@ class Search extends Component {
             <h2>- Paul Sweeney</h2>
             <div id="search-box">
               <label></label>
-              <input onChange={this.handleInputChange} type="text" id="search-input" placeholder="Search any book..." autoComplete="off" />
+              <input onChange={this.handleInputChange} onKeyDown={this.handleEnterPress} type="text" id="search-input" placeholder="Search any book..." autoComplete="off" />
               <button onClick={this.handleFormSubmit} id="search-button"><i className="fa fa-search"></i>
               </button>
             </div>
