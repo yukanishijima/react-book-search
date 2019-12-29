@@ -24,13 +24,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 
-// Drop MongoDB if it exists
-mongoose.connection.dropDatabase();
 // Connect to Mongo DB 
 // If deployed, use the deployed database. Otherwise use the local database
 // const MONGODB_URI = process.env.MONGODB_URI || `mongodb://${process.env.USER}:${process.env.PASSWORD}@ds337418.mlab.com:37418/heroku_9chzb1rd`;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googlebooks";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // socket
