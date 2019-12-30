@@ -47,7 +47,7 @@ class Saved extends Component {
               href={book.link}
               title={book.title}
               authors={book.authors}
-              description={book.description}
+              description={book.description.replace(/<.*?>/g, "")}
               loadBooks={this.loadBooks}
             />
           )}
